@@ -1,4 +1,4 @@
-const { app, Menu, Tray, shell } = require('electron')
+const { app, Menu, Tray, shell, nativeImage } = require('electron')
 const constants = require('./constants')
 const store = require('./store')
 const fs = require('fs')
@@ -19,7 +19,7 @@ function getCustomConfig () {
 }
 
 function createTray () {
-  const tray = new Tray('assets/icons/32x32.png')
+  const tray = new Tray(nativeImage.createFromDataURL(constants.iconDataURL))
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Swap Interface Downloading...', enabled: false },
     { type: 'separator' },
