@@ -4,13 +4,12 @@ const path = require('path')
 const store = require('./store')
 const { updateConfig, watchConfig } = require('./configUpdater')
 const { extractZip, download, getSwapInterfacePath } = require('./utils')
-const { app, BrowserWindow, Menu, dialog } = require('electron')
+const { app, dialog } = require('electron')
 const { createServer } = require('http-server')
 const { createTray, readyTray } = require('./tray')
 const constants = require('./constants')
 const { getLatestRelease } = require('./release')
 
-let mainWindow
 let swapUIServer
 let tray
 
@@ -62,17 +61,7 @@ async function run () {
   run()
 })()
 
-// TODO: Set icon
-// TODO: hide windows
-
 app.on('ready', () => {
-  mainWindow = new BrowserWindow({
-    show: false,
-    frame: false,
-    title: 'Liquality Launcher'
-    // icon: path.join('assets/icons/64x64.png')
-  })
-  Menu.setApplicationMenu(null)
   tray = createTray()
 })
 
@@ -83,5 +72,4 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+app.dock.hide()
