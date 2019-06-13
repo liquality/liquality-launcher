@@ -7,14 +7,14 @@
     "start": "electron ./src/main.js",
     "lint": "standard",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder -mwl"
   },
   "build": {
     "appId": "liquality.launcher",
+    "productName": "Liquality Launcher",
     "directories": {
       "buildResources": "assets"
-    },
-    "files": ["*/**", "assets/icons/32x32.png"]
+    }
   },
   "repository": "https://github.com/liquality/liquality-launcher",
   "keywords": [
