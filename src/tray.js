@@ -19,7 +19,7 @@ function getCustomConfig () {
 }
 
 function createTray () {
-  const tray = new Tray('./assets/favicon.png')
+  const tray = new Tray('assets/icons/32x32.png')
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Swap Interface Downloading...', enabled: false },
     { type: 'separator' },

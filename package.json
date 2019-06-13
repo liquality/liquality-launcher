@@ -2,7 +2,7 @@
   "name": "liquaity-launcher",
   "version": "1.0.0",
   "description": "Run Liquality yourself from the comfort of your desktop",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron ./src/main.js",
     "lint": "standard",
@@ -10,7 +10,11 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "liquality.launcher"
+    "appId": "liquality.launcher",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": ["*/**", "assets/icons/32x32.png"]
   },
   "repository": "https://github.com/liquality/liquality-launcher",
   "keywords": [
