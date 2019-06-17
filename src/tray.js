@@ -44,7 +44,7 @@ function readyTray (tray) {
       }
     },
     {
-      label: 'Liquality.io Testent',
+      label: 'Liquality.io Testnet',
       type: 'radio',
       checked: configName === 'liquality.io.testnet',
       click: () => {
