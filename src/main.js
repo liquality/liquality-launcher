@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 
 const store = require('./store')
-const { updateConfig, watchConfig } = require('./configUpdater')
+const { updateConfig, watchConfig, watchCustomConfigFile } = require('./configUpdater')
 const { extractZip, download, getSwapInterfacePath } = require('./utils')
 const { app, dialog } = require('electron')
 const { createServer } = require('http-server')
@@ -52,6 +52,7 @@ async function run () {
   await setupSwapInterfaceServer()
   updateConfig()
   watchConfig()
+  watchCustomConfigFile()
   tray = readyTray(tray)
   dialog.showMessageBox(null, {
     type: 'warning', message: 'The default configuration uses Liquality owned nodes to operate for convenience. For the utmost reliability and security, select your own configuration!'

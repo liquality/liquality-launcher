@@ -3,20 +3,7 @@ const constants = require('./constants')
 const store = require('./store')
 const fs = require('fs')
 const path = require('path')
-const { getSwapInterfacePath } = require('./utils')
-
-function getCustomConfigPath () {
-  const customConfigPath = path.join(app.getPath('userData'), 'liquality-swap', 'custom.config.json')
-  if (!fs.existsSync(customConfigPath)) {
-    fs.writeFileSync(customConfigPath, JSON.stringify({}))
-  }
-  return customConfigPath
-}
-
-function getCustomConfig () {
-  const customConfigPath = getCustomConfigPath()
-  return JSON.parse(fs.readFileSync(customConfigPath))
-}
+const { getSwapInterfacePath, getCustomConfigPath, getCustomConfig } = require('./utils')
 
 function createTray () {
   const tray = new Tray(nativeImage.createFromDataURL(constants.iconDataURL))
@@ -59,7 +46,6 @@ function readyTray (tray) {
       click: () => {
         store.set('swapInterface.configName', 'custom')
         store.set('swapInterface.config', getCustomConfig())
-        console.log(getCustomConfig())
       }
     },
     {

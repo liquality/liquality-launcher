@@ -29,4 +29,17 @@ function getSwapInterfacePath () {
   return path.join(app.getPath('userData'), 'liquality-swap', `liquality-swap-${version}`)
 }
 
-module.exports = { extractZip, download, getSwapInterfacePath }
+function getCustomConfigPath () {
+  const customConfigPath = path.join(app.getPath('userData'), 'liquality-swap', 'custom.config.json')
+  if (!fs.existsSync(customConfigPath)) {
+    fs.writeFileSync(customConfigPath, JSON.stringify({}))
+  }
+  return customConfigPath
+}
+
+function getCustomConfig () {
+  const customConfigPath = getCustomConfigPath()
+  return JSON.parse(fs.readFileSync(customConfigPath))
+}
+
+module.exports = { extractZip, download, getSwapInterfacePath, getCustomConfigPath, getCustomConfig }
