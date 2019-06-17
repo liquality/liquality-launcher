@@ -39,7 +39,8 @@ async function setupSwapInterface () {
 
 async function setupSwapInterfaceServer () {
   swapUIServer = createServer({
-    root: getSwapInterfacePath()
+    root: getSwapInterfacePath(),
+    cache: -1
   })
 
   swapUIServer.listen(constants.PORT)
