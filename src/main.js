@@ -74,4 +74,6 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
-app.dock.hide()
+if (app.dock) {
+  app.dock.hide()
+}
