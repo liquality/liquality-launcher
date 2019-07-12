@@ -4,7 +4,7 @@ const path = require('path')
 const store = require('./store')
 const { updateConfig, watchConfig, watchCustomConfigFile } = require('./configUpdater')
 const { extractZip, download, getSwapInterfacePath } = require('./utils')
-const { app, dialog } = require('electron')
+const { app, dialog, BrowserWindow } = require('electron')
 const { createServer } = require('http-server')
 const { createTray, readyTray } = require('./tray')
 const constants = require('./constants')
@@ -43,7 +43,7 @@ async function setupSwapInterfaceServer () {
     cache: -1
   })
 
-  swapUIServer.listen(constants.PORT)
+  swapUIServer.listen(constants.PORT, '0.0.0.0')
 }
 
 async function run () {
@@ -54,9 +54,12 @@ async function run () {
   watchConfig()
   watchCustomConfigFile()
   tray = readyTray(tray)
-  dialog.showMessageBox(null, {
-    type: 'warning', message: 'The default configuration uses Liquality owned nodes to operate for convenience. For the utmost reliability and security, select your own configuration!'
-  })
+  const window = new BrowserWindow({ show: false }) // Temporary window for async message box.
+  dialog.showMessageBox(window, {
+    type: 'warning',
+    message: 'The default configuration uses Liquality owned nodes to operate for convenience. For the utmost reliability and security, select your own configuration!',
+    buttons: ['Ok']
+  }, () => {}) // Ensure messagebox is asynchronous
 }
 
 (async () => {
