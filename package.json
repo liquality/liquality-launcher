@@ -1,6 +1,6 @@
 {
   "name": "liquality-launcher",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Run Liquality yourself from the comfort of your desktop",
   "main": "src/main.js",
   "scripts": {
