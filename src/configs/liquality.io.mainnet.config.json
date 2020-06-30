@@ -48,5 +48,5 @@
   },
   "hostName": "Liquality",
   "hostIcon": "https://raw.githubusercontent.com/liquality/chainabstractionlayer/master/liquality-logo.png",
-  "hostAgent": "https://liquality.io/swap/agent"
+  "agents": ["https://liquality.io/swap/agent"]
 }
